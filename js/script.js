@@ -1,5 +1,5 @@
-function testeSoma(soma) {
-  soma+=soma;
-  console.log("teste no javascript");
-  return soma;
+var state = {board: [], currentGame: [], savedGame: []};
+
+function start(){
+    
 }
