@@ -74,7 +74,7 @@ function renderButtons(){
 
 function createRandomGameButton(){ 
     var button = document.createElement("button");
-    button.textContent = "Jogo aletório";
+    button.textContent = "Jogo aleatório";
 
     button.addEventListener("click", randomGame);
 
