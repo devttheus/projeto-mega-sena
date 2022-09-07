@@ -32,14 +32,20 @@ function renderBoard(){
     divBoard.innerHTML = " ";
 
     var ulNumbers = document.createElement("ul");
+    ulNumbers.classList.add("numbers");
 
     for (var i = 0; i < state.board.length; i++){
         var currentNumber = state.board[i];
 
         var liNumber = document.createElement("li");
         liNumber.textContent = currentNumber;
+        liNumber.classList.add("number");
 
         liNumber.addEventListener("click", handleNumberClick);
+
+        if(isNumberInGame(currentNumber)){
+            liNumber.classList.add("selected-number");
+        }
 
         ulNumbers.appendChild(liNumber);
     }
@@ -57,6 +63,7 @@ function handleNumberClick(event){
     }
 
     console.log(state.currentGame);
+    render();
 }
 
 function renderButtons(){
@@ -94,6 +101,7 @@ function createNewGameButton(){
 function createSavedGameButton(){
     var button = document.createElement("button");
     button.textContent = "Salvar jogo";
+    button.disabled = !isGameComplete();
 
     button.addEventListener("click", saveGame);
 
@@ -176,6 +184,7 @@ function randomGame(){
         //console.log(randomNumber);
     }while(!isGameComplete())
     console.log(state.currentGame);
+    render();
 
 }
 start();
