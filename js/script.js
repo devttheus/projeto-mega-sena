@@ -64,8 +64,22 @@ function renderButtons(){
     divButtons.innerHTML = " ";
 
     var buttonNewGame = createNewGameButton();
+    var buttonRandomGame = createRandomGameButton();
+    var buttonSavedGame = createSavedGameButton();
 
     divButtons.appendChild(buttonNewGame);
+    divButtons.appendChild(buttonRandomGame);
+    divButtons.appendChild(buttonSavedGame);
+}
+
+function createRandomGameButton(){ 
+    var button = document.createElement("button");
+    button.textContent = "Jogo aletório";
+
+    button.addEventListener("click", randomGame);
+
+    return button;
+
 }
 
 function createNewGameButton(){
@@ -73,6 +87,15 @@ function createNewGameButton(){
     button.textContent = "Novo jogo";
 
     button.addEventListener("click", newGame);
+
+    return button;
+}
+
+function createSavedGameButton(){
+    var button = document.createElement("button");
+    button.textContent = "Salvar jogo";
+
+    button.addEventListener("click", saveGame);
 
     return button;
 }
@@ -131,6 +154,9 @@ function saveGame(){
         return;
     }
     state.savedGame.push(state.currentGame);
+    newGame();
+
+    console.log(state.savedGame);
 }
 
 function isGameComplete(){
@@ -139,5 +165,17 @@ function isGameComplete(){
 
 function resetGame(){
     state.currentGame = [];
+}
+
+function randomGame(){
+    resetGame();
+    //console.log(Math.random());
+    do{
+        var randomNumber = Math.ceil(Math.random() * 60);
+        addNumbersToGame(randomNumber);
+        //console.log(randomNumber);
+    }while(!isGameComplete())
+    console.log(state.currentGame);
+
 }
 start();
