@@ -35,11 +35,24 @@ function renderBoard(){
         var liNumber = document.createElement("li");
         liNumber.textContent = currentNumber;
 
+        liNumber.addEventListener("click", handleNumberClick);
+
         ulNumbers.appendChild(liNumber);
     }
 
     divBoard.appendChild(ulNumbers);
+}
 
+function handleNumberClick(event){
+    var value = Number(event.currentTarget.textContent);
+    
+    if(isNumberInGame(value)){
+        removeNumberFromGame(value);
+    }else{
+        addNumbersToGame(value);
+    }
+
+    console.log(state.currentGame);
 }
 
 function addNumbersToGame(numberToAdd){
