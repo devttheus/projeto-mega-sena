@@ -109,7 +109,24 @@ function createSavedGameButton(){
 }
 
 function renderSavedGames(){
+    var divSavedGames = document.querySelector("#megasena-saved-games");
+    divSavedGames.innerHTML = "";
 
+    if(state.savedGame.length === 0){
+        divSavedGames.innerHTML = '<p>Nenhum jogo salvo</p>';
+    }else{
+        var ulSavedGames = document.createElement("ul");
+
+        for(var i = 0; i < state.savedGame.length; i++){
+            var currentGame = state.savedGame[i];
+
+            var liGame = document.createElement("li");
+            liGame.textContent = currentGame.join(", ");
+
+            ulSavedGames.appendChild(liGame);
+        }
+        divSavedGames.appendChild(ulSavedGames);
+    }
 }
 
 function addNumbersToGame(numberToAdd){
